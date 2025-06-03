@@ -44,20 +44,6 @@ catkin_make# 送餐服務機器人 ROS 專案
 - ROS Noetic
 - Gazebo 11
 
-## 安裝說明
-
-1. 安裝依賴套件：
-```bash
-sudo apt-get update
-sudo apt-get install ros-noetic-gazebo-ros-pkgs ros-noetic-navigation
-
-2. 複製專案到您的 catkin 工作空間：
-```bash
-cd ~/catkin_ws/src
-git clone https://github.com/您的用戶名/restaurant_robot_ros.git
-cd ..
-catkin_make
-
 ##使用方法
 
 1. 啟動完整系統：

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- 啟動整合送餐系統 -->
+  <node name="delivery_system" pkg="restaurant_robot" type="integrated_delivery_system.py" output="screen"/>
+  
+  <!-- 啟動狀態監控器 -->
+  <node name="status_monitor" pkg="restaurant_robot" type="status_monitor.py" output="screen"/>
+</launch>

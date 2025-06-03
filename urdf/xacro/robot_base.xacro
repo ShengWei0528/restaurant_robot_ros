@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="robot_base" params="parent">
+    <!-- 底盤主體 -->
+    <link name="base_link">
+      <visual>
+        <geometry>
+          <box size="${base_length} ${base_width} ${base_height}"/>
+        </geometry>
+        <material name="blue"/>
+      </visual>
+      
+      <collision>
+        <geometry>
+          <box size="${base_length} ${base_width} ${base_height}"/>
+        </geometry>
+      </collision>
+      
+      <xacro:box_inertia m="20" w="${base_length}" h="${base_width}" d="${base_height}"/>
+    </link>
+    
+    <joint name="base_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="base_link"/>
+      <!-- 調整底盤高度，讓輪子正好接觸地面 -->
+      <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
+    </joint>
+    
+    <!-- 裝飾性元素：前方指示燈 -->
+    <link name="front_indicator">
+      <visual>
+        <geometry>
+          <box size="0.05 ${base_width*0.8} 0.02"/>
+        </geometry>
+        <material name="white"/>
+      </visual>
+    </link>
+    
+    <joint name="front_indicator_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="front_indicator"/>
+      <origin xyz="${base_length/2} 0 ${base_height/2 + 0.01}" rpy="0 0 0"/>
+    </joint>
+    
+  </xacro:macro>
+
+</robot>

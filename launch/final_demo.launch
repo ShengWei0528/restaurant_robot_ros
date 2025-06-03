@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- 啟動 Gazebo 環境 -->
+  <include file="$(find restaurant_robot)/launch/gazebo_restaurant.launch"/>
+  
+  <!-- 等待 5 秒讓 Gazebo 完全載入 -->
+  <arg name="node_start_delay" default="5.0"/>
+  
+  <!-- 啟動送餐系統 -->
+  <node name="delivery_robot" pkg="restaurant_robot" type="simple_delivery_robot.py" 
+        output="screen" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@'"/>
+</launch>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- 載入地圖 -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find restaurant_robot)/maps/restaurant_map.yaml"/>
+  
+  <!-- 啟動 AMCL -->
+  <node pkg="amcl" type="amcl" name="amcl">
+    <param name="initial_pose_x" value="0.0"/>
+    <param name="initial_pose_y" value="0.0"/>
+  </node>
+  
+  <!-- 啟動 Move Base（使用預設參數） -->
+  <node pkg="move_base" type="move_base" name="move_base">
+    <param name="base_global_planner" value="navfn/NavfnROS"/>
+    <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+  </node>
+  
+  <!-- 啟動 RViz -->
+  <node name="rviz" pkg="rviz" type="rviz"/>
+</launch>

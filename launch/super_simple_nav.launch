@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- 載入地圖 -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find restaurant_robot)/maps/restaurant_map.yaml"/>
+  
+  <!-- 簡單 AMCL -->
+  <node pkg="amcl" type="amcl" name="amcl">
+    <param name="use_map_topic" value="true"/>
+    <param name="initial_pose_x" value="0.0"/>
+    <param name="initial_pose_y" value="0.0"/>
+  </node>
+  
+  <!-- 簡單 move_base -->
+  <node pkg="move_base" type="move_base" name="move_base" output="screen">
+    <param name="base_global_planner" value="navfn/NavfnROS"/>
+    <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+    
+    <!-- 最小參數 -->
+    <param name="controller_frequency" value="10.0"/>
+    <param name="planner_frequency" value="1.0"/>
+    
+    <!-- 機器人大小 -->
+    <rosparam>
+      footprint: [[-0.3, -0.2], [0.3, -0.2], [0.3, 0.2], [-0.3, 0.2]]
+      robot_radius: 0.3
+      
+      TrajectoryPlannerROS:
+        max_vel_x: 0.2
+        min_vel_x: 0.05
+        max_vel_theta: 0.5
+        acc_lim_x: 0.5
+        acc_lim_theta: 1.0
+        xy_goal_tolerance: 0.5
+        yaw_goal_tolerance: 0.5
+    </rosparam>
+  </node>
+</launch>

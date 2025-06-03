@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- 載入地圖 -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find restaurant_robot)/maps/restaurant_map.yaml"/>
+  
+  <!-- 載入機器人描述 -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find restaurant_robot)/urdf/restaurant_robot.urdf.xacro'" />
+  
+  <!-- 機器人狀態發布 -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  
+  <!-- AMCL 定位 -->
+  <node pkg="amcl" type="amcl" name="amcl" output="screen">
+    <param name="initial_pose_x" value="0.0"/>
+    <param name="initial_pose_y" value="0.0"/>
+    <param name="initial_pose_a" value="0.0"/>
+    <param name="min_particles" value="500"/>
+    <param name="max_particles" value="1000"/>
+  </node>
+  
+  <!-- Move Base -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <!-- 載入參數 -->
+    <rosparam file="$(find restaurant_robot)/config/minimal_costmap.yaml" command="load" />
+    
+    <!-- 基本參數 -->
+    <param name="base_global_planner" value="navfn/NavfnROS"/>
+    <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+    
+    <!-- 速度參數 -->
+    <rosparam>
+      TrajectoryPlannerROS:
+        max_vel_x: 0.3
+        min_vel_x: 0.1
+        max_vel_theta: 0.5
+        min_in_place_vel_theta: 0.2
+        acc_lim_x: 0.5
+        acc_lim_theta: 1.0
+        xy_goal_tolerance: 0.3
+        yaw_goal_tolerance: 0.3
+        holonomic_robot: false
+    </rosparam>
+  </node>
+  
+  <!-- RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find restaurant_robot)/config/navigation.rviz"/>
+</launch>

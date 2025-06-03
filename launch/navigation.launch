@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- 載入地圖 -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find restaurant_robot)/maps/restaurant_map.yaml"/>
+  
+  <!-- 啟動 AMCL -->
+  <include file="$(find restaurant_robot)/launch/amcl.launch"/>
+  
+  <!-- 啟動 Move Base -->
+  <include file="$(find restaurant_robot)/launch/move_base.launch"/>
+  
+  <!-- 啟動 RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find restaurant_robot)/config/navigation.rviz"/>
+</launch>

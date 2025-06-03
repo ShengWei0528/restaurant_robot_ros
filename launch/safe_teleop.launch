@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- 啟動鍵盤控制節點，降低初始速度 -->
+  <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_keyboard" output="screen">
+    <param name="speed" value="0.2"/>
+    <param name="turn" value="0.5"/>
+  </node>
+</launch>

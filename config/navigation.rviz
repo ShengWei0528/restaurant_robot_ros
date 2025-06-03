@@ -1,0 +1,70 @@
+Panels:
+  - Class: rviz/Displays
+    Name: Displays
+  - Class: rviz/Views
+    Name: Views
+  - Class: rviz/Tool Properties
+    Name: Tool Properties
+Visualization Manager:
+  Displays:
+    - Class: rviz/Grid
+      Name: Grid
+      Value: true
+    - Class: rviz/RobotModel
+      Name: RobotModel
+      Robot Description: robot_description
+      Value: true
+    - Class: rviz/TF
+      Name: TF
+      Value: true
+    - Class: rviz/LaserScan
+      Name: LaserScan
+      Topic: /scan
+      Value: true
+    - Class: rviz/Map
+      Name: Map
+      Topic: /map
+      Value: true
+    - Class: rviz/Map
+      Name: Global Costmap
+      Topic: /move_base/global_costmap/costmap
+      Value: true
+      Alpha: 0.5
+    - Class: rviz/Map
+      Name: Local Costmap
+      Topic: /move_base/local_costmap/costmap
+      Value: true
+      Alpha: 0.7
+    - Class: rviz/Path
+      Name: Global Plan
+      Topic: /move_base/NavfnROS/plan
+      Value: true
+      Color: 25; 255; 0
+    - Class: rviz/Path
+      Name: Local Plan
+      Topic: /move_base/TrajectoryPlannerROS/local_plan
+      Value: true
+      Color: 255; 0; 0
+    - Class: rviz/PoseArray
+      Name: AMCL Particles
+      Topic: /particlecloud
+      Value: true
+  Global Options:
+    Fixed Frame: map
+    Frame Rate: 30
+  Tools:
+    - Class: rviz/MoveCamera
+    - Class: rviz/Interact
+    - Class: rviz/Select
+    - Class: rviz/SetInitialPose
+    - Class: rviz/SetGoal
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 15
+      Pitch: 1.57
+      Target Frame: base_link
+      Yaw: -1.57
+Window Geometry:
+  Height: 1056
+  Width: 1855

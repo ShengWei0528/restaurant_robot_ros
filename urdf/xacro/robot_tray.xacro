@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="robot_tray" params="parent">
+    
+    <!-- 支撐柱 -->
+    <link name="tray_support">
+      <visual>
+        <geometry>
+          <cylinder radius="0.05" length="${tray_height}"/>
+        </geometry>
+        <material name="grey"/>
+      </visual>
+      
+      <collision>
+        <geometry>
+          <cylinder radius="0.05" length="${tray_height}"/>
+        </geometry>
+      </collision>
+      
+      <xacro:cylinder_inertia m="2" r="0.05" h="${tray_height}"/>
+    </link>
+    
+    <joint name="tray_support_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="tray_support"/>
+      <origin xyz="0 0 ${base_height/2 + tray_height/2}" rpy="0 0 0"/>
+    </joint>
+    
+    <!-- 托盤 -->
+    <link name="tray">
+      <visual>
+        <geometry>
+          <box size="${tray_size} ${tray_size} 0.05"/>
+        </geometry>
+        <material name="white"/>
+      </visual>
+      
+      <collision>
+        <geometry>
+          <box size="${tray_size} ${tray_size} 0.05"/>
+        </geometry>
+      </collision>
+      
+      <xacro:box_inertia m="3" w="${tray_size}" h="${tray_size}" d="0.05"/>
+    </link>
+    
+    <joint name="tray_joint" type="fixed">
+      <parent link="tray_support"/>
+      <child link="tray"/>
+      <origin xyz="0 0 ${tray_height/2 + 0.025}" rpy="0 0 0"/>
+    </joint>
+    
+    <!-- 托盤邊緣（防止物品滑落） -->
+    <link name="tray_edge">
+      <visual>
+        <geometry>
+          <box size="${tray_size + 0.02} ${tray_size + 0.02} 0.03"/>
+        </geometry>
+        <material name="red"/>
+      </visual>
+    </link>
+    
+    <joint name="tray_edge_joint" type="fixed">
+      <parent link="tray"/>
+      <child link="tray_edge"/>
+      <origin xyz="0 0 0.04" rpy="0 0 0"/>
+    </joint>
+    
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot name="restaurant_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- 引入其他檔案 -->
+  <xacro:include filename="$(find restaurant_robot)/urdf/xacro/robot_properties.xacro" />
+  <xacro:include filename="$(find restaurant_robot)/urdf/xacro/robot_base.xacro" />
+  <xacro:include filename="$(find restaurant_robot)/urdf/xacro/robot_wheels.xacro" />
+  <xacro:include filename="$(find restaurant_robot)/urdf/xacro/robot_tray.xacro" />
+  <xacro:include filename="$(find restaurant_robot)/urdf/xacro/robot_sensors.xacro" />
+  <xacro:include filename="$(find restaurant_robot)/urdf/xacro/robot.gazebo" />
+
+  <!-- 基礎連結 -->
+  <link name="base_footprint"/>
+
+  <!-- 組裝機器人 -->
+  <xacro:robot_base parent="base_footprint"/>
+  <xacro:robot_wheels parent="base_link"/>
+  <xacro:robot_tray parent="base_link"/>
+  <xacro:robot_sensors parent="base_link"/>
+
+</robot>

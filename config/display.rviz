@@ -1,0 +1,30 @@
+Panels:
+  - Class: rviz/Displays
+    Name: Displays
+  - Class: rviz/Views
+    Name: Views
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz/Grid
+      Name: Grid
+      Value: true
+    - Alpha: 1
+      Class: rviz/RobotModel
+      Name: RobotModel
+      Robot Description: robot_description
+      Value: true
+    - Class: rviz/TF
+      Name: TF
+      Value: true
+  Global Options:
+    Fixed Frame: base_footprint
+  Name: root
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 3
+      Name: Current View
+Window Geometry:
+  Height: 1056
+  Width: 1855

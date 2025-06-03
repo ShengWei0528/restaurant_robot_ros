@@ -1,0 +1,85 @@
+Panels:
+  - Class: rviz/Displays
+    Name: Displays
+  - Class: rviz/Views
+    Name: Views
+Visualization Manager:
+  Displays:
+    - Class: rviz/Grid
+      Name: Grid
+      Value: true
+      Cell Size: 1
+      Line Style:
+        Value: Lines
+        Line Width: 0.03
+      Color: 160; 160; 164
+      Enabled: true
+      
+    - Class: rviz/RobotModel
+      Name: RobotModel
+      Robot Description: robot_description
+      Value: true
+      Visual Enabled: true
+      
+    - Class: rviz/TF
+      Name: TF
+      Value: true
+      Frame Timeout: 15
+      Show Names: true
+      Show Axes: true
+      Show Arrows: true
+      
+    - Class: rviz/LaserScan
+      Name: LaserScan
+      Topic: /scan
+      Value: true
+      Color: 255; 0; 0
+      Color Transformer: FlatColor
+      Size (Pixels): 3
+      Size (m): 0.05
+      Style: Flat Squares
+      
+    - Class: rviz/Map
+      Name: Map
+      Topic: /map
+      Value: true
+      Alpha: 0.7
+      
+    - Class: rviz/Odometry
+      Name: Odometry
+      Topic: /odom
+      Value: true
+      Position Tolerance: 0.1
+      Angle Tolerance: 0.1
+      Shape:
+        Alpha: 1
+        Axes Length: 1
+        Axes Radius: 0.1
+        Color: 255; 25; 0
+        Head Length: 0.3
+        Head Radius: 0.1
+        Shaft Length: 1
+        Shaft Radius: 0.05
+        Value: Arrow
+      Keep: 100
+      
+  Global Options:
+    Fixed Frame: map
+    Frame Rate: 30
+    
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 15
+      Pitch: 1.57
+      Target Frame: base_footprint
+      Yaw: -1.57
+    Saved: ~
+    
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 1056
+  Width: 1855
+  X: 65
+  Y: 24

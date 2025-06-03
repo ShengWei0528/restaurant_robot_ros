@@ -1,0 +1,29 @@
+# 機器人大小
+footprint: [[-0.3, -0.2], [0.3, -0.2], [0.3, 0.2], [-0.3, 0.2]]
+
+# 障礙物參數  
+obstacle_range: 2.5
+raytrace_range: 3.0
+
+# 感測器
+observation_sources: scan
+scan: {sensor_frame: laser_link, data_type: LaserScan, topic: scan, marking: true, clearing: true}
+
+# 全局 costmap
+global_costmap:
+  global_frame: map
+  robot_base_frame: base_footprint
+  update_frequency: 1.0
+  static_map: true
+
+# 局部 costmap
+local_costmap:
+  global_frame: odom
+  robot_base_frame: base_footprint
+  update_frequency: 5.0
+  publish_frequency: 2.0
+  static_map: false
+  rolling_window: true
+  width: 6.0
+  height: 6.0
+  resolution: 0.05

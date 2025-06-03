@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- 載入機器人描述 -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find restaurant_robot)/urdf/restaurant_robot.urdf.xacro'" />
+
+  <!-- 啟動 joint_state_publisher_gui -->
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+
+  <!-- 啟動 robot_state_publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <!-- 啟動 RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find restaurant_robot)/config/display.rviz" required="true"/>
+</launch>

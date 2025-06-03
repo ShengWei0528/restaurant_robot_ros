@@ -1,0 +1,272 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="restaurant">
+    <!-- 基本設定 -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    
+    <!-- 設定物理引擎 -->
+    <physics type="ode">
+      <real_time_update_rate>1000.0</real_time_update_rate>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+    </physics>
+    
+    <!-- 相機位置 -->
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>7.0 -7.0 5.0 0 0.5 2.3</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+    
+    <!-- 餐廳地板 -->
+    <model name="restaurant_floor">
+      <static>true</static>
+      <pose>0 0 0.01 0 0 0</pose>
+      <link name="floor">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>12 8 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>12 8 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.7 1</ambient>
+            <diffuse>0.8 0.8 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    
+    <!-- 餐廳牆壁 -->
+    <!-- 前牆 -->
+    <model name="wall_front">
+      <static>true</static>
+      <pose>6 0 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 8 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 8 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.9 0.9 1</ambient>
+            <diffuse>0.9 0.9 0.9 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    
+    <!-- 後牆 -->
+    <model name="wall_back">
+      <static>true</static>
+      <pose>-6 0 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 8 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 8 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.9 0.9 1</ambient>
+            <diffuse>0.9 0.9 0.9 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    
+    <!-- 左牆 -->
+    <model name="wall_left">
+      <static>true</static>
+      <pose>0 4 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>12 0.2 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>12 0.2 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.9 0.9 1</ambient>
+            <diffuse>0.9 0.9 0.9 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    
+    <!-- 右牆 -->
+    <model name="wall_right">
+      <static>true</static>
+      <pose>0 -4 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>12 0.2 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>12 0.2 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.9 0.9 1</ambient>
+            <diffuse>0.9 0.9 0.9 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    
+    <!-- 廚房區域（用不同顏色標示） -->
+    <model name="kitchen_area">
+      <static>true</static>
+      <pose>-4 0 0.02 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3 3 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.8 1</ambient>
+            <diffuse>0.5 0.5 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    
+    <!-- 餐桌 1 -->
+    <model name="table_1">
+      <static>true</static>
+      <pose>2 2 0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.8 0.8 0.75</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.8 0.8 0.75</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.6 0.3 0.0 1</ambient>
+            <diffuse>0.6 0.3 0.0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <!-- 桌號標示 -->
+      <link name="number">
+        <pose>0 0 0.76 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 0.2 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    
+    <!-- 餐桌 2 -->
+    <model name="table_2">
+      <static>true</static>
+      <pose>2 -2 0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.8 0.8 0.75</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.8 0.8 0.75</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.6 0.3 0.0 1</ambient>
+            <diffuse>0.6 0.3 0.0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    
+    <!-- 餐桌 3 -->
+    <model name="table_3">
+      <static>true</static>
+      <pose>-1 0 0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.8 0.8 0.75</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.8 0.8 0.75</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.6 0.3 0.0 1</ambient>
+            <diffuse>0.6 0.3 0.0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    
+  </world>
+</sdf>

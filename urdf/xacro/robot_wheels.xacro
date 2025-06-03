@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="robot_wheels" params="parent">
+    
+    <!-- 左輪 -->
+    <link name="left_wheel">
+      <visual>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <material name="black"/>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+      </visual>
+      
+      <collision>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+      </collision>
+      
+      <xacro:cylinder_inertia m="2" r="${wheel_radius}" h="${wheel_width}"/>
+    </link>
+    
+    <joint name="left_wheel_joint" type="continuous">
+      <parent link="${parent}"/>
+      <child link="left_wheel"/>
+      <!-- 將輪子移到底盤中間位置 -->
+      <origin xyz="0 ${base_width/2 + wheel_width/2} ${-base_height/2}" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+      <limit velocity="5.0" effort="10.0"/>
+    </joint>
+    
+    <!-- 右輪 -->
+    <link name="right_wheel">
+      <visual>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <material name="black"/>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+      </visual>
+      
+      <collision>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+      </collision>
+      
+      <xacro:cylinder_inertia m="2" r="${wheel_radius}" h="${wheel_width}"/>
+    </link>
+    
+    <joint name="right_wheel_joint" type="continuous">
+      <parent link="${parent}"/>
+      <child link="right_wheel"/>
+      <!-- 將輪子移到底盤中間位置 -->
+      <origin xyz="0 ${-base_width/2 - wheel_width/2} ${-base_height/2}" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+      <limit velocity="5.0" effort="10.0"/>
+    </joint>
+    
+    <!-- 前支撐輪（萬向輪） -->
+    <link name="front_caster_wheel">
+      <visual>
+        <geometry>
+          <sphere radius="${wheel_radius/2}"/>
+        </geometry>
+        <material name="grey"/>
+      </visual>
+      
+      <collision>
+        <geometry>
+          <sphere radius="${wheel_radius/2}"/>
+        </geometry>
+      </collision>
+      
+      <inertial>
+        <mass value="0.5"/>
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+                 iyy="0.001" iyz="0.0"
+                 izz="0.001"/>
+      </inertial>
+    </link>
+    
+    <joint name="front_caster_wheel_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="front_caster_wheel"/>
+      <!-- 前支撐輪位置 -->
+      <origin xyz="${base_length/2 - 0.05} 0 ${-base_height/2 - wheel_radius/2}" rpy="0 0 0"/>
+    </joint>
+    
+    <!-- 後支撐輪（萬向輪） -->
+    <link name="rear_caster_wheel">
+      <visual>
+        <geometry>
+          <sphere radius="${wheel_radius/2}"/>
+        </geometry>
+        <material name="grey"/>
+      </visual>
+      
+      <collision>
+        <geometry>
+          <sphere radius="${wheel_radius/2}"/>
+        </geometry>
+      </collision>
+      
+      <inertial>
+        <mass value="0.5"/>
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+                 iyy="0.001" iyz="0.0"
+                 izz="0.001"/>
+      </inertial>
+    </link>
+    
+    <joint name="rear_caster_wheel_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="rear_caster_wheel"/>
+      <!-- 後支撐輪位置 -->
+      <origin xyz="${-base_length/2 + 0.05} 0 ${-base_height/2 - wheel_radius/2}" rpy="0 0 0"/>
+    </joint>
+    
+  </xacro:macro>
+
+</robot>

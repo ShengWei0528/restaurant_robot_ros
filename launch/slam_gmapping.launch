@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Gmapping 節點 -->
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+    <!-- 基本框架設定 -->
+    <param name="base_frame" value="base_footprint"/>
+    <param name="odom_frame" value="odom"/>
+    <param name="map_frame" value="map"/>
+    
+    <!-- 地圖更新頻率 -->
+    <param name="map_update_interval" value="2.0"/>
+    
+    <!-- 雷射掃描參數 -->
+    <param name="maxUrange" value="9.5"/>
+    <param name="maxRange" value="10.0"/>
+    
+    <!-- 地圖解析度 (米/像素) -->
+    <param name="delta" value="0.05"/>
+    
+    <!-- 地圖大小 -->
+    <param name="xmin" value="-10.0"/>
+    <param name="ymin" value="-10.0"/>
+    <param name="xmax" value="10.0"/>
+    <param name="ymax" value="10.0"/>
+    
+    <!-- 粒子濾波器參數 -->
+    <param name="particles" value="30"/>
+    
+    <!-- 里程計誤差模型 -->
+    <param name="srr" value="0.1"/>
+    <param name="srt" value="0.2"/>
+    <param name="str" value="0.1"/>
+    <param name="stt" value="0.2"/>
+    
+    <!-- 重採樣閾值 -->
+    <param name="resampleThreshold" value="0.5"/>
+    
+    <!-- 似然場模型參數 -->
+    <param name="llsamplerange" value="0.01"/>
+    <param name="llsamplestep" value="0.01"/>
+    <param name="lasamplerange" value="0.005"/>
+    <param name="lasamplestep" value="0.005"/>
+  </node>
+</launch>

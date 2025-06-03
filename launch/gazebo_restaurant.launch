@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- 參數設定 -->
+  <arg name="x_pos" default="0.0"/>
+  <arg name="y_pos" default="0.0"/>
+  <arg name="z_pos" default="0.2"/>
+  
+  <!-- 載入機器人描述 -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find restaurant_robot)/urdf/restaurant_robot.urdf.xacro'" />
+  
+  <!-- 啟動 Gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find restaurant_robot)/worlds/restaurant.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="recording" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+  
+  <!-- 生成機器人 -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-urdf -model restaurant_robot -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
+  
+  <!-- 發布關節狀態 -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="30.0" />
+  </node>
+  
+</launch>
